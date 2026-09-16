@@ -133,3 +133,15 @@ The app passes the selected browser `File` directly to the viewer through the `l
 ## License
 
 See [LICENSE](./LICENSE).
+
+
+## Troubleshooting: DWG opens with a worker error
+
+If Vite reports an `__vite-optional-peer-dep` error or a DWG parse error with `Worker error: undefined`, stop the dev server and clear Vite's optimized-dependency cache:
+
+```powershell
+Remove-Item -Recurse -Force node_modules/.vite -ErrorAction SilentlyContinue
+npm run dev -- --force
+```
+
+Drafyx resolves the LibreDWG parser worker against the browser document URL and serves the worker/WASM assets from `/assets`. The official MLightCAD integration requires the parser worker and `libredwg-web.wasm` to be deployed as browser-accessible assets.

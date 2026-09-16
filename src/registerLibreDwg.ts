@@ -13,7 +13,7 @@ export function registerLibreDwg(): void {
   const converter = new AcDbLibreDwgConverter({
     convertByEntityType: false,
     useWorker: true,
-    parserWorkerUrl: `./assets/${LIBREDWG_PARSER_WORKER_FILE}`,
+    parserWorkerUrl: new URL(`assets/${LIBREDWG_PARSER_WORKER_FILE}`, document.baseURI).href,
   })
 
   AcDbDatabaseConverterManager.instance.register(AcDbFileType.DWG, converter)
