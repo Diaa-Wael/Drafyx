@@ -18,47 +18,6 @@ const isViewerOpen = ref(false)
 const isDragging = ref(false)
 const errorMessage = ref('')
 const recentFiles = ref<Array<{ name: string; size: number; type: string }>>([])
-const appLocale = ref<'en' | 'ar'>('en')
-
-const copy = computed(() => appLocale.value === 'ar' ? {
-  subtitle: 'عارض CAD على المتصفح',
-  newSample: 'عينة جديدة',
-  openCad: 'فتح CAD',
-  eyebrow: 'DWG · DXF · جاهز للهاتف',
-  title1: 'افحص رسومات CAD',
-  title2: 'بدون برنامج CAD مكتبي.',
-  description: 'افتح ملفات AutoCAD ثنائية الأبعاد مباشرة في المتصفح. حرّك، كبّر، استعرض الطبقات والعناصر، وراجع الرسومات على الهاتف أو الجهاز اللوحي أو سطح المكتب.',
-  openDrawing: 'فتح رسم',
-  trySample: 'جرّب العينة',
-  dropTitle: 'أفلت ملف CAD هنا',
-  dropCopy: 'أو استخدم مستعرض الملفات. Drafyx مصمم لمراجعة DWG وDXF في المتصفح.',
-  choose: 'اختيار ملف',
-  openAnother: 'فتح ملف آخر',
-  close: 'إغلاق',
-  processed: 'تمت المعالجة محلياً',
-  dropRelease: 'أفلت لفتح الملف',
-  dropStay: 'يبقى الرسم داخل جلسة المتصفح هذه.',
-  invalid: 'يدعم Drafyx تنسيقات الرسومات مثل DWG وDXF.'
-} : {
-  subtitle: 'Browser CAD viewer',
-  newSample: 'New sample',
-  openCad: 'Open CAD',
-  eyebrow: 'DWG · DXF · MOBILE READY',
-  title1: 'Inspect CAD drawings',
-  title2: 'without desktop CAD.',
-  description: 'Open AutoCAD 2D files directly in your browser. Pan, zoom, inspect layers and entities, and review drawings on phones, tablets, or desktop browsers.',
-  openDrawing: 'Open a drawing',
-  trySample: 'Try the sample',
-  dropTitle: 'Drop a CAD file here',
-  dropCopy: 'Or use the file picker. Drafyx is built around DWG and DXF browser review.',
-  choose: 'Choose file',
-  openAnother: 'Open another',
-  close: 'Close',
-  processed: 'processed locally',
-  dropRelease: 'Release to open',
-  dropStay: 'Your drawing stays in this browser session.',
-  invalid: 'Drafyx supports AutoCAD drawing formats such as DWG and DXF.'
-})
 
 const accept = '.dwg,.dxf'
 
@@ -89,7 +48,7 @@ async function openFile(file?: File): Promise<void> {
   if (!file) return
 
   if (!isCadFile(file)) {
-    errorMessage.value = copy.value.invalid
+    errorMessage.value = 'Drafyx supports AutoCAD drawing formats such as DWG and DXF.'
     return
   }
 
@@ -179,28 +138,20 @@ function createSampleDxf(): string {
 </script>
 
 <template>
-  <div class="app-shell" :dir="appLocale === 'ar' ? 'rtl' : 'ltr'">
-    <header class="topbar" data-drafyx-shell-header>
+  <div class="app-shell">
+    <header class="topbar">
       <div class="brand" aria-label="Drafyx">
         <div class="brand-mark">D</div>
         <div>
           <div class="brand-name">Drafyx</div>
-          <div class="brand-subtitle">{{ copy.subtitle }}</div>
+          <div class="brand-subtitle">Browser CAD viewer</div>
         </div>
       </div>
 
       <div class="topbar-actions">
-        <button class="ghost-button" type="button" @click="newDrawing">{{ copy.newSample }}</button>
-        <button class="primary-button compact open-cad-top" type="button" @click="chooseFile"><span class="open-cad-label">{{ copy.openCad }}</span><span class="open-cad-icon">↥</span></button>
+        <button class="ghost-button" type="button" @click="newDrawing">New sample</button>
+        <button class="primary-button compact" type="button" @click="chooseFile">Open CAD</button>
       </div>
-
-      <label class="locale-switch" :aria-label="appLocale === 'en' ? 'Language' : 'اللغة'">
-        <span class="locale-label">{{ appLocale === 'en' ? 'EN' : 'AR' }}</span>
-        <select v-model="appLocale">
-          <option value="en">English</option>
-          <option value="ar">العربية</option>
-        </select>
-      </label>
     </header>
 
     <main
@@ -213,16 +164,17 @@ function createSampleDxf(): string {
     >
       <section v-if="!isViewerOpen" class="landing">
         <div class="hero-copy">
-          <div class="eyebrow">{{ copy.eyebrow }}</div>
-          <h1>{{ copy.title1 }}<br /><span>{{ copy.title2 }}</span></h1>
+          <div class="eyebrow">DWG · DXF · MOBILE READY</div>
+          <h1>Inspect CAD drawings<br /><span>without desktop CAD.</span></h1>
           <p>
-            {{ copy.description }}
+            Open AutoCAD 2D files directly in your browser. Pan, zoom, inspect layers and entities,
+            and review drawings on phones, tablets, or desktop browsers.
           </p>
 
           <div class="hero-actions">
             <button class="primary-button hero-button" type="button" @click="chooseFile">
               <span class="button-icon">↥</span>
-              {{ copy.openDrawing }}
+              Open a drawing
             </button>
             <button class="secondary-button hero-button" type="button" @click="newDrawing">
               Try the sample
@@ -241,9 +193,9 @@ function createSampleDxf(): string {
           <div class="upload-grid"></div>
           <div class="upload-content">
             <div class="drop-icon">⌁</div>
-            <h2>{{ isDragging ? (appLocale === 'ar' ? 'أفلت الرسم هنا' : 'Drop your drawing') : copy.dropTitle }}</h2>
-            <p>{{ copy.dropCopy }}</p>
-            <button class="secondary-button" type="button" @click="chooseFile">{{ copy.choose }}</button>
+            <h2>{{ isDragging ? 'Drop your drawing' : 'Drop a CAD file here' }}</h2>
+            <p>Or use the file picker. Drafyx is built around DWG and DXF browser review.</p>
+            <button class="secondary-button" type="button" @click="chooseFile">Choose file</button>
             <div class="format-row">
               <span>DWG</span>
               <span>DXF</span>
@@ -259,12 +211,12 @@ function createSampleDxf(): string {
             <div class="file-symbol">CAD</div>
             <div class="file-meta">
               <strong>{{ selectedFile?.name }}</strong>
-              <span>{{ formattedSize }} · {{ copy.processed }}</span>
+              <span>{{ formattedSize }} · processed locally</span>
             </div>
           </div>
           <div class="workspace-actions">
-            <button class="ghost-button" type="button" @click="chooseFile">{{ copy.openAnother }}</button>
-            <button class="ghost-button close" type="button" @click="closeViewer">{{ copy.close }}</button>
+            <button class="ghost-button" type="button" @click="chooseFile">Open another</button>
+            <button class="ghost-button close" type="button" @click="closeViewer">Close</button>
           </div>
         </div>
 
@@ -280,7 +232,7 @@ function createSampleDxf(): string {
             :is-show-toolbar="true"
             :is-show-coordinate="true"
             :is-show-entity-info="true"
-            :is-show-language-selector="false"
+            :is-show-language-selector="true"
             :is-show-stats="false"
           />
         </div>
@@ -296,8 +248,8 @@ function createSampleDxf(): string {
 
       <div v-if="isDragging && !isViewerOpen" class="drop-overlay">
         <div class="drop-overlay-inner">
-          <strong>{{ copy.dropRelease }}</strong>
-          <span>{{ copy.dropStay }}</span>
+          <strong>Release to open</strong>
+          <span>Your drawing stays in this browser session.</span>
         </div>
       </div>
     </main>
