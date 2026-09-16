@@ -124,6 +124,12 @@ Drafyx can be expanded into a full review platform with features such as drawing
 - MLightCAD CAD Simple Viewer Example: https://github.com/mlightcad/cad-simple-viewer-example
 - LibreDWG converter package: https://www.npmjs.com/package/@mlightcad/libredwg-converter
 
+## DWG loading
+
+Drafyx uses `@mlightcad/cad-viewer` for the Vue CAD workspace. DXF parsing is built into the MLightCAD data model; DWG support is registered explicitly with `@mlightcad/libredwg-converter` and its parser Web Worker/WASM assets. The Vite config copies the worker and `libredwg-web.wasm` into `dist/assets`, matching the documented integration.
+
+The app passes the selected browser `File` directly to the viewer through the `local-file` prop, so opening a drawing does not require uploading it to a Drafyx backend.
+
 ## License
 
 See [LICENSE](./LICENSE).
