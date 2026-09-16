@@ -278,3 +278,48 @@ h1 span { color: #818a96; }
 @media (max-width: 640px) {
   .topbar { position: static; }
 }
+
+.locale-switch {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 34px;
+  padding: 0 8px;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  background: rgba(255,255,255,.03);
+  color: #cbd2db;
+  font-size: 11px;
+  font-weight: 750;
+}
+.locale-switch select {
+  appearance: none;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: inherit;
+  font-size: 11px;
+  font-weight: 750;
+  cursor: pointer;
+  padding: 0 14px 0 2px;
+}
+.locale-switch::after {
+  content: '⌄';
+  position: absolute;
+  right: 7px;
+  top: 7px;
+  pointer-events: none;
+  color: var(--muted);
+}
+.locale-switch select option { background: #101318; color: #eef2f6; }
+[dir="rtl"] .locale-switch::after { right: auto; left: 7px; }
+[dir="rtl"] .locale-switch select { padding: 0 2px 0 14px; }
+
+@media (max-width: 640px) {
+  .topbar-actions { gap: 6px; }
+  .locale-switch { min-height: 32px; padding: 0 7px; }
+  .locale-switch select { max-width: 46px; }
+  .locale-label { display: none; }
+  .locale-switch select { padding-right: 11px; }
+}
