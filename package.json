@@ -2,7 +2,7 @@
   "name": "drafyx",
   "version": "0.1.0",
   "private": true,
-  "description": "Drafyx — a mobile-friendly browser CAD viewer for DWG and DXF drawings.",
+  "description": "Drafyx \u2014 a mobile-friendly browser CAD viewer for DWG and DXF drawings.",
   "type": "module",
   "engines": {
     "node": ">=24"
@@ -14,16 +14,16 @@
     "typecheck": "vue-tsc --noEmit"
   },
   "dependencies": {
-    "@mlightcad/cad-agent-plugin": "1.7.0",
-    "@mlightcad/cad-html-plugin": "1.7.0",
-    "@mlightcad/cad-pdf-plugin": "1.7.0",
     "@mlightcad/cad-simple-viewer": "1.7.0",
     "@mlightcad/cad-viewer": "1.7.0",
     "@mlightcad/data-model": "1.14.6",
     "@mlightcad/libredwg-converter": "3.14.6",
     "element-plus": "^2.8.0",
     "vue": "^3.5.0",
-    "vue-i18n": "^11.0.0"
+    "vue-i18n": "^11.0.0",
+    "@mlightcad/cad-agent-plugin": "1.7.0",
+    "@mlightcad/cad-html-plugin": "1.7.0",
+    "@mlightcad/cad-pdf-plugin": "1.7.0"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^6.0.0",
