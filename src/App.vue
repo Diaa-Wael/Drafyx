@@ -139,7 +139,7 @@ function createSampleDxf(): string {
 
 <template>
   <div class="app-shell">
-    <header class="topbar">
+    <header class="topbar" data-drafyx-shell-header>
       <div class="brand" aria-label="Drafyx">
         <div class="brand-mark">D</div>
         <div>
@@ -150,7 +150,7 @@ function createSampleDxf(): string {
 
       <div class="topbar-actions">
         <button class="ghost-button" type="button" @click="newDrawing">New sample</button>
-        <button class="primary-button compact" type="button" @click="chooseFile">Open CAD</button>
+        <button class="primary-button compact open-cad-top" type="button" @click="chooseFile"><span class="open-cad-label">Open CAD</span><span class="open-cad-icon">↥</span></button>
       </div>
     </header>
 

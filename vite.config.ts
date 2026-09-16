@@ -24,10 +24,6 @@ function prepareCadRuntimeAssets() {
       source: resolve(rootDir, 'node_modules/@mlightcad/libredwg-converter/dist/libredwg-web.wasm'),
       target: resolve(assetDir, 'libredwg-web.wasm'),
     },
-    {
-      source: resolve(rootDir, 'node_modules/@mlightcad/cad-html-plugin/dist/viewer-runtime.iife.js'),
-      target: resolve(assetDir, 'viewer-runtime.iife.js'),
-    },
   ]
 
   for (const asset of assets) {
@@ -41,7 +37,15 @@ export default defineConfig({
   base: './',
   resolve: {
     alias: {
-      '__vite-optional-peer-dep:@mlightcad/cad-agent-plugin/style.css:@mlightcad/cad-viewer:false': resolve(rootDir, 'src/vendor/cad-agent-placeholder.css'),
+      '@mlightcad/cad-agent-plugin/register': resolve(rootDir, 'src/vendor/optional-plugin-stub.ts'),
+      '@mlightcad/cad-agent-plugin/style.css': resolve(rootDir, 'src/vendor/optional-plugin-placeholder.css'),
+      '@mlightcad/cad-html-plugin/register': resolve(rootDir, 'src/vendor/optional-plugin-stub.ts'),
+      '@mlightcad/cad-html-plugin/style.css': resolve(rootDir, 'src/vendor/optional-plugin-placeholder.css'),
+      '@mlightcad/cad-pdf-plugin/register': resolve(rootDir, 'src/vendor/optional-plugin-stub.ts'),
+      '@mlightcad/cad-pdf-plugin/style.css': resolve(rootDir, 'src/vendor/optional-plugin-placeholder.css'),
+      '__vite-optional-peer-dep:@mlightcad/cad-agent-plugin/style.css:@mlightcad/cad-viewer:false': resolve(rootDir, 'src/vendor/optional-plugin-placeholder.css'),
+      '__vite-optional-peer-dep:@mlightcad/cad-html-plugin/style.css:@mlightcad/cad-viewer:false': resolve(rootDir, 'src/vendor/optional-plugin-placeholder.css'),
+      '__vite-optional-peer-dep:@mlightcad/cad-pdf-plugin/style.css:@mlightcad/cad-viewer:false': resolve(rootDir, 'src/vendor/optional-plugin-placeholder.css'),
     },
   },
   plugins: [
@@ -60,11 +64,6 @@ export default defineConfig({
         },
         {
           src: './node_modules/@mlightcad/libredwg-converter/dist/libredwg-web.wasm',
-          dest: 'assets',
-          rename: { stripBase: true },
-        },
-        {
-          src: './node_modules/@mlightcad/cad-html-plugin/dist/viewer-runtime.iife.js',
           dest: 'assets',
           rename: { stripBase: true },
         },
