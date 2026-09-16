@@ -2,7 +2,7 @@
   "name": "drafyx",
   "version": "0.1.0",
   "private": true,
-  "description": "Drafyx — a mobile-friendly browser CAD viewer for DWG and DXF drawings.",
+  "description": "Drafyx \u2014 a mobile-friendly browser CAD viewer for DWG and DXF drawings.",
   "type": "module",
   "engines": {
     "node": ">=24"
@@ -26,8 +26,8 @@
     "@vitejs/plugin-vue": "^6.0.0",
     "typescript": "^5.8.0",
     "vite": "^7.0.0",
-    "vite-plugin-static-copy": "^3.1.0",
-    "vue-tsc": "^3.0.0"
+    "vue-tsc": "^3.0.0",
+    "@types/node": "^22.15.0"
   },
   "license": "MIT"
 }

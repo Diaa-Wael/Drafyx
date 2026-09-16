@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, nextTick, ref } from 'vue'
 import { MlCadViewer } from '@mlightcad/cad-viewer'
-import { AcApSettingManager } from '@mlightcad/cad-simple-viewer'
+import { AcApSettingManager, AcEdOpenMode } from '@mlightcad/cad-simple-viewer'
 import { registerLibreDwg } from './registerLibreDwg'
 
 registerLibreDwg()
@@ -20,6 +20,11 @@ const errorMessage = ref('')
 const recentFiles = ref<Array<{ name: string; size: number; type: string }>>([])
 
 const accept = '.dwg,.dxf'
+
+const viewerKey = computed(() => {
+  const file = selectedFile.value
+  return file ? `${file.name}:${file.lastModified}` : 'empty'
+})
 
 const formattedSize = computed(() => {
   if (!selectedFile.value) return ''
@@ -222,11 +227,11 @@ function createSampleDxf(): string {
 
         <div class="viewer-card">
           <MlCadViewer
-            :key="selectedFile?.name + selectedFile?.lastModified"
+            :key="viewerKey"
             locale="en"
             :local-file="selectedFile"
             :background="0x0b0d10"
-            :mode="'AcEdOpenMode.Review'"
+            :mode="AcEdOpenMode.Review"
             :is-show-command-line="false"
             :is-show-main-menu="false"
             :is-show-toolbar="true"
