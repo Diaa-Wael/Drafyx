@@ -4,6 +4,8 @@ import { MlCadViewer } from '@mlightcad/cad-viewer'
 import { AcApSettingManager } from '@mlightcad/cad-simple-viewer'
 import { registerLibreDwg } from './registerLibreDwg'
 
+AcApSettingManager.instance.isShowLanguageSelector = false
+
 registerLibreDwg()
 
 AcApSettingManager.instance.isShowToolbar = true
