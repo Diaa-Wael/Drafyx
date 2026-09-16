@@ -228,7 +228,7 @@ function createSampleDxf(): string {
             :background="0x0b0d10"
             :mode="'AcEdOpenMode.Review'"
             :is-show-command-line="false"
-            :is-show-main-menu="true"
+            :is-show-main-menu="false"
             :is-show-toolbar="true"
             :is-show-coordinate="true"
             :is-show-entity-info="true"

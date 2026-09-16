@@ -145,3 +145,7 @@ npm run dev -- --force
 ```
 
 Drafyx resolves the LibreDWG parser worker against the browser document URL and serves the worker/WASM assets from `/assets`. The official MLightCAD integration requires the parser worker and `libredwg-web.wasm` to be deployed as browser-accessible assets.
+
+## UI layout
+
+Drafyx uses a compact application header above the CAD workspace. The CAD viewer toolbar remains inside the drawing viewport, while the app header provides file-level actions. The layout tightens further on phones to preserve drawing area and prevent toolbar overlap.

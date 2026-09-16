@@ -23,8 +23,8 @@ button { border: 0; cursor: pointer; }
 
 .app-shell { min-height: 100vh; display: flex; flex-direction: column; }
 .topbar {
-  height: 76px;
-  padding: 0 28px;
+  height: 58px;
+  padding: 0 22px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -37,11 +37,11 @@ button { border: 0; cursor: pointer; }
 }
 .brand { display: flex; align-items: center; gap: 12px; }
 .brand-mark {
-  width: 36px; height: 36px; border-radius: 10px; display: grid; place-items: center;
-  background: var(--accent); color: #11150b; font-weight: 900; font-size: 18px;
+  width: 32px; height: 32px; border-radius: 10px; display: grid; place-items: center;
+  background: var(--accent); color: #11150b; font-weight: 900; font-size: 16px;
   box-shadow: 0 0 30px rgba(201,255,79,.18);
 }
-.brand-name { font-weight: 800; letter-spacing: -.02em; font-size: 17px; }
+.brand-name { font-weight: 800; letter-spacing: -.02em; font-size: 16px; }
 .brand-subtitle { font-size: 11px; color: var(--muted); margin-top: 1px; }
 .topbar-actions { display: flex; gap: 10px; align-items: center; }
 
@@ -66,7 +66,7 @@ h1 span { color: #818a96; }
 .secondary-button { color: #eff3f8; background: #171b21; border: 1px solid var(--border); font-weight: 650; }
 .ghost-button { color: #cbd2db; background: transparent; }
 .ghost-button:hover { background: rgba(255,255,255,.05); }
-.compact { min-height: 38px; padding: 0 14px; border-radius: 10px; }
+.compact { min-height: 34px; padding: 0 12px; border-radius: 9px; }
 .hero-button { min-height: 52px; border-radius: 14px; padding: 0 20px; }
 .button-icon { font-size: 20px; margin-right: 8px; }
 .trust-row { margin-top: 25px; color: #76808d; font-size: 12px; display: flex; gap: 10px; flex-wrap: wrap; }
@@ -96,22 +96,22 @@ h1 span { color: #818a96; }
 .recent { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; justify-content: center; }
 .recent span { color: #9fa9b4; border: 1px solid var(--border); border-radius: 7px; padding: 4px 7px; }
 .hidden-file-input { display: none; }
-.drop-overlay { position: fixed; inset: 76px 0 0; z-index: 50; background: rgba(8,10,13,.86); backdrop-filter: blur(8px); display: grid; place-items: center; pointer-events: none; }
+.drop-overlay { position: fixed; inset: 58px 0 0; z-index: 50; background: rgba(8,10,13,.86); backdrop-filter: blur(8px); display: grid; place-items: center; pointer-events: none; }
 .drop-overlay-inner { border: 1px dashed rgba(201,255,79,.7); padding: 38px 52px; border-radius: 22px; text-align: center; background: #10151a; box-shadow: 0 25px 100px rgba(0,0,0,.35); }
 .drop-overlay strong { display: block; font-size: 24px; }
 .drop-overlay span { display: block; margin-top: 8px; color: var(--muted); font-size: 13px; }
 
-.viewer-mode { height: calc(100vh - 76px); min-height: 580px; }
-.workspace { width: 100%; height: 100%; padding: 12px; display: flex; flex-direction: column; gap: 10px; }
-.workspace-toolbar { min-height: 58px; display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 0 6px; }
+.viewer-mode { height: calc(100vh - 58px); min-height: 560px; }
+.workspace { width: 100%; height: 100%; padding: 8px 10px 10px; display: flex; flex-direction: column; gap: 7px; }
+.workspace-toolbar { min-height: 44px; display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 0 6px; }
 .file-pill { display: flex; align-items: center; gap: 10px; min-width: 0; }
-.file-symbol { width: 40px; height: 40px; border-radius: 11px; background: #171c22; border: 1px solid var(--border); display: grid; place-items: center; color: var(--accent); font-size: 9px; font-weight: 900; letter-spacing: .08em; }
+.file-symbol { width: 34px; height: 34px; border-radius: 11px; background: #171c22; border: 1px solid var(--border); display: grid; place-items: center; color: var(--accent); font-size: 9px; font-weight: 900; letter-spacing: .08em; }
 .file-meta { min-width: 0; display: flex; flex-direction: column; }
 .file-meta strong { max-width: min(52vw, 620px); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 13px; }
 .file-meta span { color: #747e8b; font-size: 11px; margin-top: 2px; }
-.workspace-actions { display: flex; gap: 4px; flex-shrink: 0; }
+.workspace-actions { display: flex; gap: 2px; flex-shrink: 0; }
 .ghost-button.close { color: #aeb6bf; }
-.viewer-card { flex: 1; min-height: 0; border-radius: 14px; overflow: hidden; border: 1px solid var(--border); background: #0b0d10; }
+.viewer-card { flex: 1; min-height: 0; position: relative; border-radius: 14px; overflow: hidden; border: 1px solid var(--border); background: #0b0d10; }
 .viewer-card > * { height: 100%; width: 100%; }
 
 @media (max-width: 900px) {
@@ -121,9 +121,13 @@ h1 span { color: #818a96; }
 }
 
 @media (max-width: 640px) {
-  .topbar { height: 64px; padding: 0 14px; }
+  .topbar { height: 52px; padding: 0 10px; }
+  .brand { gap: 8px; }
+  .brand-mark { width: 28px; height: 28px; border-radius: 8px; font-size: 14px; }
+  .brand-name { font-size: 15px; }
   .brand-subtitle { display: none; }
   .topbar .ghost-button { display: none; }
+  .compact { min-height: 32px; padding: 0 10px; font-size: 12px; }
   .landing { width: min(100% - 24px, 720px); padding: 36px 0 30px; min-height: auto; }
   h1 { font-size: clamp(42px, 13vw, 62px); }
   .hero-copy > p { font-size: 15px; }
@@ -132,13 +136,17 @@ h1 span { color: #818a96; }
   .upload-card, .upload-content { min-height: 330px; }
   .upload-content { padding: 28px 20px; }
   .footer { display: none; }
-  .viewer-mode { height: calc(100svh - 64px); min-height: 0; }
-  .workspace { padding: 8px; }
-  .workspace-toolbar { min-height: 50px; }
+  .viewer-mode { height: calc(100svh - 52px); min-height: 0; }
+  .workspace { padding: 5px 6px 6px; gap: 5px; }
+  .workspace-toolbar { min-height: 38px; padding: 0 2px; }
+  .file-pill { gap: 7px; }
+  .file-symbol { width: 30px; height: 30px; border-radius: 8px; font-size: 8px; }
+  .file-meta strong { max-width: 56vw; font-size: 12px; }
+  .file-meta span { font-size: 10px; }
   .workspace-actions .ghost-button:first-child { display: none; }
-  .file-symbol { width: 34px; height: 34px; }
-  .file-meta strong { max-width: 52vw; }
-  .viewer-card { border-radius: 10px; }
+  .workspace-actions .ghost-button { min-height: 30px; padding: 0 8px; font-size: 11px; }
+  .viewer-card { border-radius: 9px; }
+  .drop-overlay { inset: 52px 0 0; }
 }
 
 @media (prefers-reduced-motion: reduce) {
