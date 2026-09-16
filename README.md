@@ -1,10 +1,10 @@
-# CAD Mobile Browser Viewer
+# Drafyx
 
-A web-based, mobile-friendly viewer for opening and inspecting CAD files
-directly in a browser, without requiring desktop CAD software.
+Drafyx is a web-based, mobile-friendly viewer for opening and inspecting CAD
+files directly in a browser, without requiring desktop CAD software.
 
-The project aims to make CAD designs easier to access and review on phones
-and tablets.
+The project aims to make CAD designs easier to access and review on phones and
+tablets.
 
 ## Status
 
