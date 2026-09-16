@@ -21,19 +21,18 @@ body { min-height: 100vh; background: radial-gradient(circle at 85% 0%, #171d24 
 button, input { font: inherit; }
 button { border: 0; cursor: pointer; }
 
-.app-shell { min-height: 100vh; display: flex; flex-direction: column; }
+.app-shell { min-height: 100vh; height: 100svh; display: flex; flex-direction: column; overflow: hidden; }
 .topbar {
-  height: 58px;
-  padding: 0 22px;
+  height: 48px;
+  padding: 0 18px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   border-bottom: 1px solid var(--border);
   background: rgba(8, 10, 13, 0.88);
   backdrop-filter: blur(20px);
-  position: sticky;
-  top: 0;
-  z-index: 20;
+  position: relative;
+  z-index: 2;
 }
 .brand { display: flex; align-items: center; gap: 12px; }
 .brand-mark {
@@ -45,9 +44,9 @@ button { border: 0; cursor: pointer; }
 .brand-subtitle { font-size: 11px; color: var(--muted); margin-top: 1px; }
 .topbar-actions { display: flex; gap: 10px; align-items: center; }
 
-.page { position: relative; flex: 1; }
+.page { position: relative; flex: 1 1 auto; min-height: 0; overflow: hidden; }
 .landing {
-  width: min(1180px, calc(100% - 40px)); min-height: calc(100vh - 140px); margin: 0 auto;
+  width: min(1180px, calc(100% - 40px)); min-height: calc(100vh - 120px); margin: 0 auto;
   display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(360px, .95fr); gap: 56px; align-items: center;
   padding: 72px 0 54px;
 }
@@ -96,14 +95,14 @@ h1 span { color: #818a96; }
 .recent { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; justify-content: center; }
 .recent span { color: #9fa9b4; border: 1px solid var(--border); border-radius: 7px; padding: 4px 7px; }
 .hidden-file-input { display: none; }
-.drop-overlay { position: fixed; inset: 58px 0 0; z-index: 50; background: rgba(8,10,13,.86); backdrop-filter: blur(8px); display: grid; place-items: center; pointer-events: none; }
+.drop-overlay { position: fixed; inset: 48px 0 0; z-index: 50; background: rgba(8,10,13,.86); backdrop-filter: blur(8px); display: grid; place-items: center; pointer-events: none; }
 .drop-overlay-inner { border: 1px dashed rgba(201,255,79,.7); padding: 38px 52px; border-radius: 22px; text-align: center; background: #10151a; box-shadow: 0 25px 100px rgba(0,0,0,.35); }
 .drop-overlay strong { display: block; font-size: 24px; }
 .drop-overlay span { display: block; margin-top: 8px; color: var(--muted); font-size: 13px; }
 
-.viewer-mode { height: calc(100vh - 58px); min-height: 560px; }
-.workspace { width: 100%; height: 100%; padding: 8px 10px 10px; display: flex; flex-direction: column; gap: 7px; }
-.workspace-toolbar { min-height: 44px; display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 0 6px; }
+.viewer-mode { height: calc(100svh - 48px); min-height: 560px; }
+.workspace { width: 100%; height: 100%; min-height: 0; padding: 6px 8px 8px; display: flex; flex-direction: column; gap: 7px; }
+.workspace-toolbar { min-height: 40px; display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 0 6px; }
 .file-pill { display: flex; align-items: center; gap: 10px; min-width: 0; }
 .file-symbol { width: 34px; height: 34px; border-radius: 11px; background: #171c22; border: 1px solid var(--border); display: grid; place-items: center; color: var(--accent); font-size: 9px; font-weight: 900; letter-spacing: .08em; }
 .file-meta { min-width: 0; display: flex; flex-direction: column; }
@@ -111,7 +110,7 @@ h1 span { color: #818a96; }
 .file-meta span { color: #747e8b; font-size: 11px; margin-top: 2px; }
 .workspace-actions { display: flex; gap: 2px; flex-shrink: 0; }
 .ghost-button.close { color: #aeb6bf; }
-.viewer-card { flex: 1; min-height: 0; position: relative; border-radius: 14px; overflow: hidden; border: 1px solid var(--border); background: #0b0d10; }
+.viewer-card { flex: 1 1 auto; min-height: 0; position: relative; border-radius: 14px; overflow: hidden; border: 1px solid var(--border); background: #0b0d10; }
 .viewer-card > * { height: 100%; width: 100%; }
 
 @media (max-width: 900px) {
@@ -121,7 +120,7 @@ h1 span { color: #818a96; }
 }
 
 @media (max-width: 640px) {
-  .topbar { height: 52px; padding: 0 10px; }
+  .topbar { height: 44px; padding: 0 10px; }
   .brand { gap: 8px; }
   .brand-mark { width: 28px; height: 28px; border-radius: 8px; font-size: 14px; }
   .brand-name { font-size: 15px; }
@@ -136,131 +135,251 @@ h1 span { color: #818a96; }
   .upload-card, .upload-content { min-height: 330px; }
   .upload-content { padding: 28px 20px; }
   .footer { display: none; }
-  .viewer-mode { height: calc(100svh - 52px); min-height: 0; }
+  .viewer-mode { height: calc(100svh - 44px); min-height: 0; }
   .workspace { padding: 5px 6px 6px; gap: 5px; }
-  .workspace-toolbar { min-height: 38px; padding: 0 2px; }
+  .workspace-toolbar { min-height: 34px; padding: 0 2px; }
   .file-pill { gap: 7px; }
   .file-symbol { width: 30px; height: 30px; border-radius: 8px; font-size: 8px; }
   .file-meta strong { max-width: 56vw; font-size: 12px; }
   .file-meta span { font-size: 10px; }
   .workspace-actions .ghost-button:first-child { display: none; }
   .workspace-actions .ghost-button { min-height: 30px; padding: 0 8px; font-size: 11px; }
-  .viewer-card { border-radius: 9px; }
-  .drop-overlay { inset: 52px 0 0; }
+  .viewer-card { border-radius: 9px; min-height: 0; }
+  .drop-overlay { inset: 44px 0 0; }
 }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; }
 }
+.page.viewer-mode ~ .footer { display: none; }
+.app-shell:has(.viewer-mode) .topbar { box-shadow: none; }
+.app-shell:has(.viewer-mode) .topbar-actions { gap: 6px; }
+.app-shell:has(.viewer-mode) .topbar-actions .ghost-button { display: none; }
 
-
-/* Drafyx mobile touch layout */
-.open-cad-icon { display: none; }
+/* ---------- Drafyx responsive layout ---------- */
 
 @media (max-width: 640px) {
-  html, body, #app { width: 100%; min-width: 0; overflow-x: hidden; }
-  .app-shell { width: 100%; min-width: 0; }
+  html, body, #app {
+    width: 100%;
+    min-width: 0;
+    overflow-x: hidden;
+  }
+
+  .app-shell {
+    width: 100%;
+    min-width: 0;
+    min-height: 100svh;
+    height: auto;
+    overflow: visible;
+  }
+
+  /* Landing page: the header stays in normal document flow. */
   .topbar {
     position: relative;
+    z-index: 2;
+    flex: 0 0 50px;
+    width: 100%;
     height: 50px;
     min-height: 50px;
     padding: 0 10px;
     gap: 8px;
+    background: rgba(8, 10, 13, 0.96);
   }
-  .brand { min-width: 0; }
-  .brand-name { font-size: 14px; }
-  .brand-mark { width: 27px; height: 27px; }
-  .topbar-actions { margin-left: auto; }
-  .open-cad-top { min-height: 34px; height: 34px; padding: 0 11px; border-radius: 9px; }
 
+  .brand {
+    min-width: 0;
+    gap: 8px;
+  }
+
+  .brand-mark {
+    width: 28px;
+    height: 28px;
+    min-width: 28px;
+    border-radius: 8px;
+    font-size: 14px;
+  }
+
+  .brand-name { font-size: 15px; }
+  .brand-subtitle { display: none; }
+
+  .topbar-actions {
+    min-width: 0;
+    margin-left: auto;
+    gap: 6px;
+  }
+
+  .topbar-actions .ghost-button { display: none; }
+  .topbar-actions .primary-button { min-height: 34px; }
+
+  .page {
+    width: 100%;
+    min-width: 0;
+  }
+
+  /* Viewer mode gets exactly the space below the normal-flow header. */
+  .page.viewer-mode {
+    height: calc(100svh - 50px);
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  .workspace {
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    padding: 4px;
+    gap: 4px;
+    overflow: hidden;
+  }
+
+  .workspace-toolbar {
+    width: 100%;
+    height: 38px;
+    min-height: 38px;
+    padding: 0 2px;
+    gap: 6px;
+    overflow: hidden;
+  }
+
+  .file-pill {
+    min-width: 0;
+    flex: 1 1 auto;
+    overflow: hidden;
+  }
+
+  .file-symbol {
+    width: 29px;
+    height: 29px;
+    min-width: 29px;
+    border-radius: 8px;
+  }
+
+  .file-meta { min-width: 0; }
+  .file-meta strong {
+    max-width: 100%;
+    font-size: 11px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .file-meta span {
+    max-width: 100%;
+    font-size: 9px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .workspace-actions {
+    flex: 0 0 auto;
+    gap: 3px;
+  }
+
+  .workspace-actions .ghost-button:first-child { display: none; }
+  .workspace-actions .ghost-button.close {
+    min-height: 30px;
+    padding: 0 9px;
+    font-size: 10px;
+    border-radius: 8px;
+  }
+
+  .viewer-card {
+    width: 100%;
+    min-width: 0;
+    min-height: 0;
+    flex: 1 1 auto;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .viewer-card > * {
+    width: 100% !important;
+    height: 100% !important;
+  }
+
+  /* Do not resize/reposition the CAD library's own tools; just keep their host clipped. */
+  .viewer-card [class*="toolbar"],
+  .viewer-card [class*="Toolbar"] {
+    max-width: 100%;
+  }
+
+  .footer { display: none; }
+
+  /* Landing page on phones. */
   .landing {
     width: 100%;
-    padding: 22px 12px 20px;
-    display: flex;
-    flex-direction: column;
+    padding: 24px 12px 28px;
+    grid-template-columns: 1fr;
     gap: 18px;
   }
-  .hero-copy { width: 100%; }
-  .eyebrow { font-size: 9px; letter-spacing: .14em; margin-bottom: 13px; }
-  h1 { font-size: clamp(36px, 12vw, 54px); line-height: .98; letter-spacing: -.055em; }
-  .hero-copy > p { margin-top: 16px; font-size: 14px; line-height: 1.5; }
-  .hero-actions { margin-top: 20px; gap: 9px; }
-  .hero-button { min-height: 48px; }
-  .trust-row { margin-top: 15px; font-size: 10px; gap: 7px; }
+
+  .hero-copy { width: 100%; max-width: none; }
+  .eyebrow { font-size: 9px; margin-bottom: 12px; }
+  h1 { font-size: clamp(38px, 12vw, 56px); line-height: .98; }
+  .hero-copy > p { font-size: 14px; line-height: 1.5; }
+
+  .hero-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+    margin-top: 18px;
+  }
+
+  .hero-button {
+    width: 100%;
+    min-height: 48px;
+  }
 
   .upload-card {
     width: 100%;
     min-height: 250px;
     border-radius: 18px;
   }
+
   .upload-content {
     min-height: 250px;
     padding: 22px 16px;
   }
-  .drop-icon { width: 50px; height: 50px; border-radius: 14px; font-size: 28px; margin-bottom: 13px; }
+
+  .drop-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 14px;
+    font-size: 28px;
+    margin-bottom: 12px;
+  }
+
   .upload-content h2 { font-size: 18px; }
-  .upload-content p { margin: 9px 0 0; max-width: 310px; font-size: 12px; }
-  .upload-content .secondary-button { min-height: 44px; margin-top: 7px; width: min(220px, 100%); }
-  .format-row { margin-top: 14px; }
+  .upload-content p { max-width: 310px; font-size: 12px; }
+  .upload-content .secondary-button { width: min(220px, 100%); min-height: 44px; }
 
-  .viewer-mode {
-    height: calc(100svh - 50px);
-    min-height: 0;
-    overflow: hidden;
-  }
-  .workspace {
-    width: 100%;
-    height: 100%;
-    padding: 4px;
-    gap: 4px;
-    overflow: hidden;
-  }
-  .workspace-toolbar {
-    width: 100%;
-    min-height: 38px;
-    height: 38px;
-    padding: 0 2px;
-    gap: 6px;
-    overflow: hidden;
-  }
-  .file-pill { min-width: 0; flex: 1 1 auto; overflow: hidden; }
-  .file-symbol { width: 28px; height: 28px; min-width: 28px; }
-  .file-meta { min-width: 0; }
-  .file-meta strong { max-width: 100%; font-size: 11px; }
-  .file-meta span { font-size: 9px; white-space: nowrap; }
-  .workspace-actions { flex: 0 0 auto; }
-  .workspace-actions .ghost-button { min-height: 30px; padding: 0 8px; font-size: 10px; border-radius: 8px; }
-  .workspace-actions .ghost-button:first-child { display: none; }
-
-  .viewer-card {
-    width: 100%;
-    min-width: 0;
-    flex: 1 1 auto;
-    border-radius: 8px;
-    overflow: hidden;
-    touch-action: none;
+  .drop-overlay {
+    inset: 50px 0 0;
   }
 
-  /* Keep viewer controls inside the phone width when the library exposes toolbar flex rows. */
-  .viewer-card [class*="toolbar"],
-  .viewer-card [class*="Toolbar"] {
-    max-width: 100%;
-  }
-  .viewer-card button {
-    min-width: 32px;
-    min-height: 32px;
+  .drop-overlay-inner {
+    width: calc(100% - 28px);
+    padding: 28px 18px;
+    border-radius: 16px;
   }
 
-  .drop-overlay { inset: 50px 0 0; }
-  .drop-overlay-inner { width: calc(100% - 28px); padding: 28px 18px; border-radius: 16px; }
   .drop-overlay strong { font-size: 20px; }
 }
 
 @media (max-width: 380px) {
-  .open-cad-label { display: none; }
-  .open-cad-icon { display: inline; font-size: 17px; line-height: 1; }
-  .open-cad-top { width: 36px; padding: 0; display: grid; place-items: center; }
-  .brand-subtitle { display: none; }
+  .topbar-actions .primary-button {
+    width: 36px;
+    min-width: 36px;
+    padding: 0;
+    font-size: 0;
+    display: grid;
+    place-items: center;
+  }
+
+  .topbar-actions .primary-button::after {
+    content: '↥';
+    font-size: 17px;
+  }
+
   .landing { padding-left: 10px; padding-right: 10px; }
-  .workspace-actions .ghost-button.close { font-size: 9px; padding: 0 7px; }
 }

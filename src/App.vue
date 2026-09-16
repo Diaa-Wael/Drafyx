@@ -150,7 +150,7 @@ function createSampleDxf(): string {
 
       <div class="topbar-actions">
         <button class="ghost-button" type="button" @click="newDrawing">New sample</button>
-        <button class="primary-button compact open-cad-top" type="button" @click="chooseFile"><span class="open-cad-label">Open CAD</span><span class="open-cad-icon">↥</span></button>
+        <button class="primary-button compact" type="button" @click="chooseFile">Open CAD</button>
       </div>
     </header>
 
