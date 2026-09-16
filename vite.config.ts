@@ -40,7 +40,6 @@ export default defineConfig({
   base: './',
   resolve: {
     alias: {
-      '__vite-optional-peer-dep:@mlightcad/cad-agent-plugin/style.css:@mlightcad/cad-viewer:false': resolve(rootDir, 'src/vendor/cad-agent-placeholder.css'),
     },
   },
   plugins: [vue()],

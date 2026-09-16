@@ -20,7 +20,11 @@
     "@mlightcad/libredwg-converter": "3.14.6",
     "element-plus": "^2.8.0",
     "vue": "^3.5.0",
-    "vue-i18n": "^11.0.0"
+    "vue-i18n": "^11.0.0",
+    "@mlightcad/cad-agent-plugin": "1.6.3",
+    "@mlightcad/cad-html-plugin": "1.7.0",
+    "@mlightcad/cad-pdf-plugin": "1.7.0",
+    "@mlightcad/cad-svg-plugin": "1.7.0"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^6.0.0",
