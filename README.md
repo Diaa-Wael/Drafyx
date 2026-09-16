@@ -149,3 +149,7 @@ Drafyx resolves the LibreDWG parser worker against the browser document URL and 
 ## UI layout
 
 Drafyx uses a compact application header above the CAD workspace. The CAD viewer toolbar remains inside the drawing viewport, while the app header provides file-level actions. The layout tightens further on phones to preserve drawing area and prevent toolbar overlap.
+
+### MLightCAD optional plugins
+
+Drafyx includes the MLightCAD agent, HTML, and PDF plugin packages because `@mlightcad/cad-viewer` can resolve their lazy registration entry points at runtime. The official MLightCAD example lists `@mlightcad/cad-pdf-plugin` alongside the agent and HTML plugins for a full viewer integration. See the project package.json for the pinned versions.
